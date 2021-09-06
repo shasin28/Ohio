@@ -1,0 +1,35 @@
+int wordLadderLength(string startWord, string targetWord, vector<string>& wordList) {
+        
+        unordered_set<string>dict(wordList.begin(),wordList.end());
+        queue<string>q;
+        q.push(startWord);
+        if(dict.find(targetWord)==dict.end())
+        return 0;
+        int l=1;
+        while(!q.empty())
+        {
+            int sz=q.size();
+            for(int i=0;i<sz;i++)
+            {
+                string word=q.front();
+                q.pop();
+                if(word==targetWord)
+                return l;
+                dict.erase(word);
+                for(int j=0;j<word.size();j++)
+                {
+                    char cc=word[j];
+                    for(int k=0;k<26;k++)
+                    {
+                        word[j]='a'+k;
+                        if(dict.find(word)!=dict.end())
+                        q.push(word);
+                    }
+                    word[j]=cc;
+                }
+                
+            }
+            l++;
+        }
+        return 0;
+    }
