@@ -1,0 +1,19 @@
+//convert the number to base n----repeatative division
+long long findNth(long long N)
+    {
+         string s="";
+         while(N)
+         {
+             s+=to_string(N%9);
+             N=N/9;
+         }
+         
+        // reverse(s.begin(),s.end());
+         long long res=0;
+         int n=s.size();
+         for(int i=0;i<n;i++)
+         {
+             res+=(s[i]-'0')*(long long)pow(10,i);
+         }
+         return res;
+    }
