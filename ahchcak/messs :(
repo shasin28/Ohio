@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+long long maxArea(long long A[], int len)
+{
+    int lef[len];
+    int rig[len];
+    stack<int>rmax;
+    lef[0]=A[0];
+    rmax.push(0);
+    for(int i=1;i<len;i++)
+    {
+        if(A[i]<A[rmax.top()])
+        {
+            lef[i]=rmax.top();
+            rmax.push(i);
+            
+        }
+        else
+        {
+            while(!rmax.empty()&&A[rmax.top()]<A[i])
+            rmax.pop();
+            lef[i]=(rmax.empty()?i:rmax.top());
+            rmax.push(i);
+            lef[i]=0;
+        }
+    
+    }
+    stack<int>lmax;
+    rig[len-1]=len-1;
+    lmax.push(len-1);
+     for(int i=len-2;i>=0;i--)
+    {
+        if(A[i]<A[lmax.top()])
+        {
+            rig[i]=lmax.top();
+            lmax.push(i);
+            
+        }
+        else
+        {
+            while(!lmax.empty()&&A[lmax.top()]<A[i])
+            lmax.pop();
+            rig[i]=(lmax.empty()?i:lmax.top());
+            lmax.push(i);
+           // rig[i]=0;
+        }
+    
+    }
+    long long res=0;
+    for(int i=0;i<len;i++ )
+    {
+        res=max(res,min(A[lef[i]],A[rig[i]])*(rig[i]-lef[i]));
+       
+    }
+    return res;
+    
+}
