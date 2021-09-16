@@ -1,0 +1,90 @@
+//mast problem hai re baba!! 
+
+
+                     
+// the agun -solution SSS 
+int equal(vector<int> arr) {
+    int maxm=INT_MIN;
+    int minm=INT_MAX;
+    int n=arr.size();
+    for(int i=0;i<n;i++)
+    {
+        maxm=max(arr[i],maxm);
+        minm=min(arr[i],minm);
+        
+    }
+    
+    int r=1e9;
+      for(int t = minm - 4; t <=minm; t++) {
+            int s = 0;
+            for(int i = 0; i < n; i++) {
+                int D = arr[i] - t;
+                s += D / 5, D %= 5;
+                s += D / 2, D %= 2;
+                s += D;
+            }
+            r = min(r, s);
+        }
+        return r;
+       
+}
+
+**********************************************************************************
+
+//my dp solution that passed 15/16 testcases
+//to do: find error
+
+int equal(vector<int> arr) {
+    int maxm=INT_MIN;
+    int minm=INT_MAX;
+    int n=arr.size();
+    for(int i=0;i<n;i++)
+    {
+        maxm=max(arr[i],maxm);
+        minm=min(arr[i],minm);
+        
+    }
+    if(maxm==minm)
+    return 0;
+    int dp[maxm+1];
+    dp[0]=0;
+ 
+    // Initialize all table values as Infinite
+    for (int i=1; i<=maxm; i++)
+        dp[i] =INT_MAX;
+ 
+    // Compute minimum candies required for all
+    // values from 1 to V
+    int candies[]={1,2,5};
+    for (int i=1;i<=maxm;i++)
+    {
+        for (int j=0; j<3; j++)
+          if (candies[j] <= i)
+          {
+              int sub_res = dp[i-candies[j]];
+              if (sub_res != INT_MAX && sub_res + 1 < dp[i])
+                  dp[i] = sub_res + 1;
+          }
+         
+    }
+    int res=INT_MAX;
+    
+    for(int i=minm;i>=minm-4&&i>=0;i--)
+    {
+        int num=0;
+        for(int j=0;j<n;j++)
+        {
+           num+=dp[arr[j]-i]; 
+        }
+        if(num<=INT_MAX&&num>=INT_MIN)
+        res=min(res,(int)num);
+    }
+    
+    return res;
+}
+
+
+
+
+
+
