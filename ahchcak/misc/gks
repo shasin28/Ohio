@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std; 
+const int mod=1e9 + 7;
+#define frl(a, c) for (int(a) = 0; (a) < (c); (a)++) 
+#define fri(a, b, c) for (int(a) = (b); (a) <= (c); (a)++) 
+#define frr(a, b, c) for (int(a) = (b); (a) >= (c); (a)--) 
+typedef long long int ll; 
+typedef vector<int> vi; 
+typedef pair<int, int> pi; 
+#define F first 
+#define S second 
+#define PB push_back 
+#define POB pop_back 
+#define MP make_pair 
+#define ssrt(k) sort(k.begin(),k.end())
+
+int main() 
+{ 
+	ios::sync_with_stdio(0); 
+	cin.tie(0); 
+	int T; 
+	cin >> T; 
+	int k=1;
+	while(k<=T)
+	{
+	  int n;
+	  cin>>n;
+	  string s;
+	  cin>>s;
+	  long long l[n],r[n];
+	  long long c=INT_MAX;
+	  for(int i=0;i<n;i++)
+	  {
+	      if(s[i]=='1')
+	      {
+	          l[i]=0;
+	          c=0;
+	      }
+	      else
+	      {
+	          c++;
+	          l[i]=c;
+	      }
+	  }
+	  c=INT_MAX;
+	  long long sum=0;
+	  for(int j=n-1;j>=0;j--)
+	  {
+	      if(s[j]=='1')
+	      {
+	          r[j]=0;
+	          c=0;
+	      }
+	      else
+	      {
+	          c++;
+	          r[j]=c;
+	      }
+	     sum+=min(l[j],r[j]); 
+	  }
+	  cout<<"Case #"<<k<<": "<<sum<<"\n";
+	  k++;
+	}
+	
+	return 0; 
+} 
