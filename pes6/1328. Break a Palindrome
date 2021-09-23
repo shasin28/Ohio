@@ -1,0 +1,60 @@
+//beauty 
+
+
+string breakPalindrome(string p) {
+        
+        size_t sz = p.size();
+        if (sz <= 1) return "";
+        
+        for (size_t i=0; i < sz/2; i++) {
+            if (p[i] > 'a')  {
+                p[i] = 'a';
+                return p;
+            }
+        }
+        
+        p[sz-1] = 'b';
+        return p;
+    }
+********************************************
+
+
+//and the beast :(
+
+
+
+class Solution {
+public:
+    string breakPalindrome(string palindrome) {
+        
+        int n=palindrome.size();
+        if(n==1)
+            return "";
+        
+        int c=0;
+        char cc='Z';
+        if(n%2!=0)
+        {
+            cc=palindrome[n/2];
+            palindrome[n/2]='a';
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(palindrome[i]!='a')
+            {
+                palindrome[i]='a';break;
+    
+            }
+            else 
+                c++;
+        }
+        if(c==n)
+            palindrome[n-1]='b';
+        if(cc!='Z')
+        {
+            palindrome[n/2]=cc;
+        }
+        
+        return palindrome;
+    }
+};
