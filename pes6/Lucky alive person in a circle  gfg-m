@@ -1,0 +1,9 @@
+   int find(int n){
+   
+        int p = 1;
+    while (p <= n)
+        p *= 2;
+ 
+    // Return 2n - 2^(1+floor(Logn)) + 1
+    return (2 * n) - p + 1;
+    }
