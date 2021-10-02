@@ -1,0 +1,123 @@
+//2 october 2021
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+
+
+void routePairs(int maxTravelDist,vector<vector<int>>forwardRouteList,vector<vector<int>>returnRouteList)
+{
+    vector<vector<int>> res;
+    
+    
+    int m=forwardRouteList.size();
+    int n=returnRouteList.size();
+    
+    
+        int sum=forwardRouteList[0][1];
+        int search=maxTravelDist-sum;
+        
+        int j;
+        for(j=0;j<n;j++)
+        {
+            if(returnRouteList[j][1]>=search)
+            break;
+        }
+        
+        if(returnRouteList[j][1]>search)
+        j--;
+        
+        int best=-1;
+        
+        if(returnRouteList[j][1]+forwardRouteList[0][1]<=maxTravelDist)
+        {
+            vector<int>temp;
+            best=returnRouteList[j][1]+forwardRouteList[0][1];
+            temp.push_back(forwardRouteList[0][0]);
+            temp.push_back(returnRouteList[j][0]);
+            res.push_back(temp);
+            
+        }
+        
+        int k=j+1;
+        if(res.size()!=0)
+        {
+        
+        while(k<n&&returnRouteList[j][1]==returnRouteList[k][1])
+        {
+            vector<int>temp;
+            temp.push_back(forwardRouteList[0][0]);
+            temp.push_back(returnRouteList[k][0]);
+            res.push_back(temp);
+            k++;
+        }
+        }
+        else
+        return;
+      
+       
+    for(int i=1;i<m;i++)
+    {
+        sum=forwardRouteList[i][1];
+        search=maxTravelDist-sum;
+        
+          for(j=0;j<n;j++)
+        {
+            if(returnRouteList[j][1]>=search)
+            break;
+        }
+        
+        if(returnRouteList[j][1]>search)
+        j--;
+        
+        
+        if(returnRouteList[j][1]+forwardRouteList[i][1]<=maxTravelDist&&returnRouteList[j][1]+forwardRouteList[i][1]>=best)
+        {
+            if(returnRouteList[j][1]+forwardRouteList[i][1]>best)
+            {
+                res.clear();
+                best=returnRouteList[j][1]+forwardRouteList[i][1];
+            }
+           
+        
+            vector<int>temp;
+            temp.push_back(forwardRouteList[i][0]);
+            temp.push_back(returnRouteList[j][0]);
+            res.push_back(temp);
+            
+        }
+        
+        int k=j+1;
+    
+        while(k<n&&returnRouteList[j][1]==returnRouteList[k][1])
+        {
+            vector<int>temp;
+            temp.push_back(forwardRouteList[i][0]);
+            temp.push_back(returnRouteList[k][0]);
+            res.push_back(temp);
+            k++;
+        }
+        
+    }
+    
+    for(int i=0;i<res.size();i++)
+    {
+        cout<<res[i][0]<<" "<<res[i][1]<<"\n";
+    }
+    
+    
+}
+
+int main() {
+    
+    int maxTravelDist=1000;
+    vector<vector<int>>forwardRouteList={{1,3000},{2,5000},{3,7000},{4,10000}};
+    vector<vector<int>>returnRouteList={{1,2000},{2,3000},{3,4000},{4,5000}};
+    routePairs(maxTravelDist,forwardRouteList,returnRouteList);
+    
+  
+    
+	
+	return 0;
+}
