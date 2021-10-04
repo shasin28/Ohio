@@ -34,3 +34,36 @@ public:
         return (mxm>=n-1);
     }
 };
+*************************************
+//4 oct 2021
+//beautiful soluion---I was complicating it for no reason---no dfs
+//Leetcode:463. Island Perimeter
+class Solution {
+public:
+    int islandPerimeter(vector<vector<int>>& grid) 
+    {
+        int r=grid.size();
+    
+        int c=grid[0].size();
+        
+        int full=0,part=0;
+        
+        for(int i=0;i<r;i++)
+        {
+            for(int j=0;j<c;j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    full++;
+                    if(i!=0&&grid[i-1][j]==1)
+                        part++;
+                    if(j!=0&&grid[i][j-1]==1)
+                        part++;
+                    
+                }
+            }
+        }
+        
+        return 4*full-2*part;
+    }
+};
