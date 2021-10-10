@@ -1,0 +1,20 @@
+// THE CLEVER ONE
+int rangeBitwiseAnd(int m, int n) {
+    return (n > m) ? (rangeBitwiseAnd(m/2, n/2) << 1) : m;
+}
+
+/*If n>m, the final digit will never match, since the final digit in the binary representation 
+changes on every increment. Thus we shift both numbers down to the right one slot (C++ >> SHR, or divide by 2), and consider 
+if those final digits match, again by the n>m comparison. When we finally find a non-zero match (n==m = 1), it must have occurred
+on the slot in the position shifted left (C++ << SHL), as many times as we have shifted right. Thus the way the program works.*/
+
+/* int rangeBitwiseAnd(int m, int n) {
+        int trans = 0;
+        while(m != n) 
+        {
+            ++ trans;
+            m >>= 1;
+            n >>= 1;
+        }
+        return m << trans;
+    }*/
