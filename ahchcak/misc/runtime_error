@@ -121,3 +121,99 @@ int main() {
 	
 	return 0;
 }
+****************************************************************************************************************************************************************
+//24oct 2021 techg 12:29
+/*Enter your code here. Read input from STDIN. Print your output to STDOUT*/
+#include<bits/stdc++.h>
+using namespace std; 
+const int mod=1e9 + 7;
+#define frl(a, c) for (int(a) = 0; (a) < (c); (a)++) 
+#define fri(a, b, c) for (int(a) = (b); (a) <= (c); (a)++) 
+#define frr(a, b, c) for (int(a) = (b); (a) >= (c); (a)--) 
+typedef long long int ll; 
+typedef vector<int> vi; 
+typedef pair<int, int> pi; 
+#define F first 
+#define S second 
+#define PB push_back 
+#define POB pop_back 
+#define MP make_pair 
+#define ssrt(k) sort(k.begin(),k.end())
+
+using namespace std;
+int main()
+{
+int n,h;
+cin>>n>>h;
+int hd[h];
+unordered_map<int,bool>rox;
+for(int i=0;i<h;i++)
+{
+cin>>hd[i];
+rox[hd[i]-1]=true;
+}
+vector<int>adj[n];
+
+for(int i=1;i<n;i++)
+{
+int u,v;
+cin>>u>>v;
+adj[u-1].push_back(v-1);
+adj[v-1].push_back(u-1);
+}
+priority_queue<pair<int,pair<int,int>>>shasha;
+for(int i=0;i<n;i++)
+{
+    if(rox[i]==true)
+    {
+	int dist[n];
+	for(int j=0;j<n;j++)
+	dist[j]=INT_MAX;
+	dist[i]=0;
+	queue<int>q;
+	q.push(i);
+	while(!q.empty())
+	{
+		int nod = q.front(); 
+		q.pop();
+		 
+		for(auto iteratorr:adj[nod])
+		{
+
+		    if(dist[nod] + 1 < dist[iteratorr])
+			{
+		        dist[iteratorr]=dist[nod]+1;
+		        q.push(iteratorr);
+		    }
+		} 
+	}
+	for(int k=i+1;k<n;k++)
+	{
+	    if(rox[k])
+	    {
+	shasha.push({dist[k],{i,k}});
+
+	    }
+	}
+    }
+}
+unordered_map<int,bool>takitaki;
+int distance=0;
+int count=0;
+while(count<h/2)
+{
+pair<int,pair<int,int>> temp=shasha.top();
+shasha.pop();
+int src=temp.second.first;
+int dest=temp.second.second;
+if(takitaki[src]==false&&takitaki[dest]==false)
+{
+	distance+=temp.first;
+	takitaki[src]=true;
+	takitaki[dest]=true;
+	count++;
+}
+}
+cout<<distance<<"\n";
+}
+
