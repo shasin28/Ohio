@@ -217,3 +217,149 @@ if(takitaki[src]==false&&takitaki[dest]==false)
 cout<<distance<<"\n";
 }
 
+*************************************************************************************88
+//6 dec
+#include<bits/stdc++.h>
+using namespace std; 
+const int mod=1e9 + 7;
+#define frl(a, c) for (int(a) = 0; (a) < (c); (a)++) 
+#define fri(a, b, c) for (int(a) = (b); (a) <= (c); (a)++) 
+#define frr(a, b, c) for (int(a) = (b); (a) >= (c); (a)--) 
+typedef long long int ll; 
+typedef vector<int> vi; 
+typedef pair<int, int> pi; 
+#define F first 
+#define S second 
+#define PB push_back 
+#define POB pop_back 
+#define MP make_pair 
+#define ssrt(k) sort(k.begin(),k.end())
+
+/*void dfs1(vector<bool>&vis,vector<int>adj[],int u,int dest)
+{
+}
+int function(int x,int y,string s)
+{
+    
+}*/
+struct Node
+{
+    int v;
+    int x;
+    int y;
+    Node(v,x,y)
+    {
+        this.v=v;
+        
+        this.x=x;
+        
+        this.y=y;
+        
+    }
+}
+struct Compare
+{
+    public:
+    bool operator()(Node& a,Node& b)
+    {
+        int d1=((a.x)*(a.x))+((a.y)*(a.y));
+        int d2=((b.x)*(b.x))+((b.y)*(b.y));
+        if(d1==d2)
+        return a.v>b.v;
+        else
+        return d1<d2;
+    }
+}
+int main() 
+{ 
+	ios::sync_with_stdio(0); 
+	cin.tie(0); 
+	int T; 
+	cin >> T; 
+	int k=1;
+	while(k<=T)
+	{
+	  
+	 
+	  k++;  
+	}
+	
+	return 0; 
+} 
+
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> shortest_path (int N, int Q, vector<vector<int> > queries) {
+   
+   
+}
+
+int main() {
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int T;
+    cin >> T;
+    for(int t_i = 0; t_i < T; t_i++)
+    {
+        int N;
+        cin >> N;
+        int Q;
+        cin >> Q;
+        vector<vector<int> > queries(Q, vector<int>(2));
+        for (int i_queries = 0; i_queries < Q; i_queries++)
+        {
+        	for(int j_queries = 0; j_queries < 2; j_queries++)
+        	{
+        		cin >> queries[i_queries][j_queries];
+        	}
+        }
+
+        vector<int> out_;
+        out_ = shortest_path(N, Q, queries);
+        cout << out_[0];
+        for(int i_out_ = 1; i_out_ < out_.size(); i_out_++)
+        {
+        	cout << " " << out_[i_out_];
+        }
+        cout << "\n";
+    }
+}
+#include<bits/stdc++.h>
+using namespace std;
+
+int solve (int N, int M, vector<vector<int> > C) {
+   // Write your code here
+   
+}
+
+int main() {
+
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int T;
+    cin >> T;
+    for(int t_i = 0; t_i < T; t_i++)
+    {
+        int N;
+        cin >> N;
+        int M;
+        cin >> M;
+        vector<vector<int> > C(M, vector<int>(2));
+        for (int i_C = 0; i_C < M; i_C++)
+        {
+        	for(int j_C = 0; j_C < 2; j_C++)
+        	{
+        		cin >> C[i_C][j_C];
+        	}
+        }
+
+        int out_;
+        out_ = solve(N, M, C);
+        cout << out_;
+        cout << "\n";
+    }
+}
+
+
